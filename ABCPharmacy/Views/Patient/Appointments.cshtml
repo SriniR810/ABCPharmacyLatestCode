@@ -30,14 +30,15 @@
 <table id="tableAppointments" class="display" style="width:100%">
     <thead>
         <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DOA)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.PatientId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DoctorId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DOA)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Symptoms)
@@ -66,42 +67,43 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PatientId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DoctorId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DOA)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Symptoms)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Indications)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Advice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Medications)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Comments)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fees)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "EditAppointment", new { id = item.AppointmentId }) |
-                    @Html.ActionLink("Delete", "DeleteAppointment", new { id = item.AppointmentId }, new { onclick = "return shouldDelete();" }) |
-                    @Html.ActionLink("Print", "Print", new { id = item.AppointmentId })
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorId)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Symptoms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Indications)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Advice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medications)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fees)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditAppointment", new { id = item.AppointmentId }) |
+                @Html.ActionLink("Delete", "DeleteAppointment", new { id = item.AppointmentId }, new { onclick = "return shouldDelete();" }) |
+                @Html.ActionLink("Print", "Print", new { id = item.AppointmentId })
 
 
-                </td>
-            </tr>
+            </td>
+        </tr>
 
         }
 
