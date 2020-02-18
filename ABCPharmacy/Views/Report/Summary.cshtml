@@ -1,0 +1,116 @@
+﻿@section head
+{
+    
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script>
+        $(document).ready(function () {
+
+            //get the dataset from the server
+            $('#btnQuery').click(function () {
+                $('#example').DataTable({
+                    destroy: true,
+                    "ajax": '/Report/Appointment?dateFrom=' + $('#tbDateFrom').val() + '&dateTo=' + $('#tbDateTo').val(),
+                    "columns": [
+                        { "data": "AppointmentId" },
+                        { "data": "PatientId" },
+                        { "data": "PatientName" },
+                        { "data": "Gender" },
+                        { "data": "Age" },
+                        { "data": "DoctorId" },
+                        { "data": "DoctorName" },
+                        { "data": "DOA" },
+                        { "data": "Symptoms" },
+                        { "data": "Indications" },
+                        { "data": "Advice" },
+                        { "data": "Medications" },
+                        { "data": "Comments" },
+                        { "data": "Fees" }
+                    ]
+                }
+                );
+
+
+                //now fetch various summary information by making another API call...
+                //Ajax Begins!
+                $.post("/Report/AppointmentSummary",
+                    {
+                        dateFrom: $('#tbDateFrom').val(),
+                        dateTo: $('#tbDateTo').val()
+                    },
+
+                    //receiver
+                    function (data, status) {
+
+
+                        if (data.Status == "Success") {
+                            document.getElementById('mySpan').innerHTML = data.Msg;
+                        }
+                        else {
+                            document.getElementById('mySpan').innerHTML = "Failed to fetch info!";
+                        }
+
+                    }).error(function (x) {
+                        alert("network error! try again later!");
+                    });
+                                                                                                    
+            });
+        });
+
+
+    </script>
+}
+<h2>Summary</h2>
+<div>
+
+    Date From: <input id="tbDateFrom" type="date" />
+    Date To: <input id="tbDateTo" type="date" />
+
+    <br />
+    <input id="btnQuery" type="button" value="Fetch Appointments" />
+    <br />
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>AppointmentId</th>
+                <th>PatientId</th>
+                <th>PatientName</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>DoctorId</th>
+                <th>DoctorName</th>
+                <th>DOA</th>
+                <th>Symptoms</th>
+                <th>Indications</th>
+                <th>Advice</th>
+                <th>Medications</th>
+                <th>Comments</th>
+                <th>Fees</th>
+
+            </tr>
+        </thead>
+        @*<tfoot>
+            <tr>
+                <td>AppointmentId</td>
+                <td>PatientId</td>
+                <td>PatientName</td>
+                <td>Gender</td>
+                <td>Age</td>
+                <td>DoctorId</td>
+                <td>DoctorName</td>
+                <td>DOA</td>
+                <td>Symptoms</td>
+                <td>Indications</td>
+                <td>Advice</td>
+                <td>Medications</td>
+                <td>Comments</td>
+                <td>Fees</td>
+            </tr>
+        </tfoot>*@
+    </table>
+
+    <span id="mySpan"></span>
+
+</div>

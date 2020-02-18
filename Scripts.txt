@@ -1,0 +1,185 @@
+USE [ABCPharmacy]
+GO
+/****** Object:  Table [dbo].[Appointments]    Script Date: 15-02-2020 05:00:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Appointments](
+	[AppointmentId] [int] IDENTITY(1,1) NOT NULL,
+	[PatientId] [int] NULL,
+	[DoctorId] [int] NULL,
+	[DOA] [datetime] NULL,
+	[Symptoms] [varchar](500) NULL,
+	[Indications] [varchar](500) NULL,
+	[Advice] [varchar](500) NULL,
+	[Medications] [varchar](500) NULL,
+	[Comments] [varchar](500) NULL,
+	[Fees] [float] NULL,
+ CONSTRAINT [PK_Appointments] PRIMARY KEY CLUSTERED 
+(
+	[AppointmentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Departments]    Script Date: 15-02-2020 05:00:58 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Departments](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[DeptName] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Departments_1] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Doctors]    Script Date: 15-02-2020 05:00:58 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Doctors](
+	[DoctorId] [int] IDENTITY(1,1) NOT NULL,
+	[DoctorName] [varchar](50) NULL,
+	[Dept] [varchar](50) NULL,
+ CONSTRAINT [PK_Doctors] PRIMARY KEY CLUSTERED 
+(
+	[DoctorId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Patients]    Script Date: 15-02-2020 05:00:58 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Patients](
+	[PatientId] [int] IDENTITY(1,1) NOT NULL,
+	[Firstname] [varchar](50) NULL,
+	[Surname] [varchar](50) NULL,
+	[Gender] [varchar](50) NULL,
+	[DOB] [datetime] NULL,
+	[Address] [varchar](200) NULL,
+ CONSTRAINT [PK_Patients] PRIMARY KEY CLUSTERED 
+(
+	[PatientId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Appointments] ON 
+GO
+INSERT [dbo].[Appointments] ([AppointmentId], [PatientId], [DoctorId], [DOA], [Symptoms], [Indications], [Advice], [Medications], [Comments], [Fees]) VALUES (1, 1, 1, CAST(N'2020-02-15T00:00:00.000' AS DateTime), N'Running nose', N'', N'', N'', N'', 10)
+GO
+INSERT [dbo].[Appointments] ([AppointmentId], [PatientId], [DoctorId], [DOA], [Symptoms], [Indications], [Advice], [Medications], [Comments], [Fees]) VALUES (2, 1, 1, CAST(N'2020-02-15T00:00:00.000' AS DateTime), N'Running nose', N'Common Cold', N'Stay away from cold', N'xyz tablets', N'blah', 12)
+GO
+INSERT [dbo].[Appointments] ([AppointmentId], [PatientId], [DoctorId], [DOA], [Symptoms], [Indications], [Advice], [Medications], [Comments], [Fees]) VALUES (3, 2, 1, CAST(N'2020-02-16T00:00:00.000' AS DateTime), N'Upset Stomach', N'', N'', N'', N'', 10)
+GO
+SET IDENTITY_INSERT [dbo].[Appointments] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Departments] ON 
+GO
+INSERT [dbo].[Departments] ([Id], [DeptName]) VALUES (1, N'General')
+GO
+INSERT [dbo].[Departments] ([Id], [DeptName]) VALUES (2, N'Orthopedic')
+GO
+INSERT [dbo].[Departments] ([Id], [DeptName]) VALUES (3, N'Cardiology')
+GO
+INSERT [dbo].[Departments] ([Id], [DeptName]) VALUES (4, N'Neurology')
+GO
+INSERT [dbo].[Departments] ([Id], [DeptName]) VALUES (5, N'Oncology')
+GO
+INSERT [dbo].[Departments] ([Id], [DeptName]) VALUES (6, N'Urology')
+GO
+SET IDENTITY_INSERT [dbo].[Departments] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Doctors] ON 
+GO
+INSERT [dbo].[Doctors] ([DoctorId], [DoctorName], [Dept]) VALUES (1, N'Ravi', N'General')
+GO
+INSERT [dbo].[Doctors] ([DoctorId], [DoctorName], [Dept]) VALUES (2, N'Shiva', N'General')
+GO
+INSERT [dbo].[Doctors] ([DoctorId], [DoctorName], [Dept]) VALUES (3, N'Mukesh', N'Oncology')
+GO
+INSERT [dbo].[Doctors] ([DoctorId], [DoctorName], [Dept]) VALUES (4, N'Rana', N'Neurology')
+GO
+INSERT [dbo].[Doctors] ([DoctorId], [DoctorName], [Dept]) VALUES (5, N'Pradip', N'Neurology')
+GO
+SET IDENTITY_INSERT [dbo].[Doctors] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Patients] ON 
+GO
+INSERT [dbo].[Patients] ([PatientId], [Firstname], [Surname], [Gender], [DOB], [Address]) VALUES (1, N'Srinivas', N'Ramachandran', N'Male', CAST(N'1980-10-08T00:00:00.000' AS DateTime), N'London, Br1 2HI')
+GO
+INSERT [dbo].[Patients] ([PatientId], [Firstname], [Surname], [Gender], [DOB], [Address]) VALUES (2, N'Anil', N'Prakash', N'Male', CAST(N'1979-10-08T00:00:00.000' AS DateTime), N'London')
+GO
+INSERT [dbo].[Patients] ([PatientId], [Firstname], [Surname], [Gender], [DOB], [Address]) VALUES (3, N'Sudipto', N'Kumar Mukherjee', N'Male', CAST(N'1980-07-07T00:00:00.000' AS DateTime), N'India, Kolkata')
+GO
+SET IDENTITY_INSERT [dbo].[Patients] OFF
+GO
+ALTER TABLE [dbo].[Appointments]  WITH CHECK ADD  CONSTRAINT [FK_Appointments_Doctors] FOREIGN KEY([DoctorId])
+REFERENCES [dbo].[Doctors] ([DoctorId])
+GO
+ALTER TABLE [dbo].[Appointments] CHECK CONSTRAINT [FK_Appointments_Doctors]
+GO
+ALTER TABLE [dbo].[Appointments]  WITH CHECK ADD  CONSTRAINT [FK_Appointments_Patients] FOREIGN KEY([PatientId])
+REFERENCES [dbo].[Patients] ([PatientId])
+GO
+ALTER TABLE [dbo].[Appointments] CHECK CONSTRAINT [FK_Appointments_Patients]
+GO
+/****** Object:  StoredProcedure [dbo].[PatientDelete]    Script Date: 15-02-2020 05:00:58 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[PatientDelete]
+(  
+@patientid int
+)  
+AS  
+BEGIN  	
+		delete from  Patients where PatientId = @patientid
+END  
+GO
+/****** Object:  StoredProcedure [dbo].[PatientInsert]    Script Date: 15-02-2020 05:00:58 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[PatientInsert]
+(  
+
+@firstname VARCHAR(50),  
+@surname VARCHAR(50),  
+@gender VARCHAR(50),  
+@dob datetime,  
+@address VARCHAR(200)
+)  
+AS  
+BEGIN  	
+		insert into Patients(Firstname,Surname,Gender,DOB,Address) values( @firstname,@surname,@gender,@dob, @address)  	
+	
+END  
+GO
+/****** Object:  StoredProcedure [dbo].[PatientUpdate]    Script Date: 15-02-2020 05:00:58 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[PatientUpdate]
+(  
+@patientid int,
+@firstname VARCHAR(50),  
+@surname VARCHAR(50),  
+@gender VARCHAR(50),  
+@dob datetime,
+@address VARCHAR(200)
+)  
+AS  
+BEGIN  	
+		update  Patients SET Firstname = @firstname, Surname = @surname, Gender = @gender, DOB = @dob, Address = @address where PatientId = @patientid
+END  
+GO

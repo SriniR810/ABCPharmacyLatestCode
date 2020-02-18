@@ -1,0 +1,29 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    @RenderSection("head", false)
+</head>
+<body>
+    <div class="container">
+        <h1>  ABC Pharmacy </h1>
+        <hr />
+        <a href="/">Home</a> &nbsp; &nbsp; &nbsp; &nbsp;
+        <a href="/Patient/Index">Manage Patients and Appointments</a> &nbsp; &nbsp; &nbsp; &nbsp;
+        <a href="/Patient/Appoitments">Show All Appointments</a> &nbsp; &nbsp; &nbsp; &nbsp;
+        <a href="/Report/Summary">Report</a>
+
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

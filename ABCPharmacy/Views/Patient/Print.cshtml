@@ -1,0 +1,114 @@
+﻿@model ABCPharmacy.Models.Appointment
+
+@section head
+{
+    <script>
+        //function printAppointment() {
+        //    window.print();
+        //}
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+
+    </script>
+}
+<h2>PRINT APPOINTMENT</h2>
+<div id="printableArea">
+    <h4>Appointment - @Model.AppointmentId.ToString("000")</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientName)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorName)
+        </dt>
+
+        <dd>
+            @(Model.DoctorName + " (" + Model.DoctorId + ")")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Symptoms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Symptoms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Indications)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Indications)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Advice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Advice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medications)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medications)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fees)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fees)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <input type="button" id="btnPrint" value="Print" onclick="printDiv('printableArea')" />
+</p>
+<a href="/Patient/Appoitments">Back to all appointments</a>

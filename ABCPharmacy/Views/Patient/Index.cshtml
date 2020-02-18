@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ABCPharmacy.Models.Patient>
+@section head
+{
+    <script>
+    function shouldDelete()
+    {
+        var x = window.confirm("Should delete?");
+
+        return x;
+    }
+    </script>
+
+}
+<h2>All Patients</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @item.DOB.ToString("dd-MMM-yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PatientId }) |
+                @Html.ActionLink("Details", "Edit", new { id = item.PatientId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PatientId }, new { onclick = "return shouldDelete();" }) |
+                @Html.ActionLink("Appoitment", "Appoitment", new { id = item.PatientId }) 
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@*<table border='1'>
+        <tr>
+            <th></th><th>0-9</th><th>10-21</th><th>21 Above</th>
+        </tr>
+        <tr>
+            <td>Fees</td>
+            <td>0</td>
+            <td>0</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>Consultations</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+    </table>*@
+
