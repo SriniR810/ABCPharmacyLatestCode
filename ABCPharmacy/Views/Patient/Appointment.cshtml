@@ -37,7 +37,8 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Patient.DOB)
+                    @*@Html.DisplayFor(model => model.Patient.DOB)*@
+                    @Model.Patient.DOB.ToString("dd-MMM-yyyy")
                 </dd>
 
                 <dt>

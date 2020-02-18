@@ -114,8 +114,8 @@
     <Content Include="Views\Patient\Create.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
-    <Content Include="Views\Patient\Appoitment.cshtml" />
-    <Content Include="Views\Patient\Appoitments.cshtml" />
+    <Content Include="Views\Patient\Appointment.cshtml" />
+    <Content Include="Views\Patient\Appointments.cshtml" />
     <Content Include="Views\Patient\EditAppointment.cshtml" />
     <Content Include="Views\Report\Summary.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

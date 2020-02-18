@@ -52,7 +52,7 @@ namespace ABCPharmacy.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public ActionResult Appoitment(int id)
+        public ActionResult Appointment(int id)
         {
             Patient patient = Patient.GetAllPatients().Find(p => p.PatientId == id);
 
@@ -68,31 +68,33 @@ namespace ABCPharmacy.Controllers
         }
 
         [HttpPost]
-        public ActionResult Appoitment(PatientDoctors model)
+        [ActionName("Appointment")]
+        public ActionResult AppointmentPost()
         {
-            int appointmentId = Appointment.CreateAppointment(int.Parse(Request["PatientId"]), int.Parse(Request["DoctorId"]), DateTime.Parse(Request["DOA"]), Request["Symptoms"], Request["Indications"], Request["Advice"], Request["Medications"], Request["Comments"], double.Parse(Request["Fees"]));
+            
+            int appointmentId = ABCPharmacy.Models.Appointment.CreateAppointment(int.Parse(Request["PatientId"]), int.Parse(Request["DoctorId"]), DateTime.Parse(Request["DOA"]), Request["Symptoms"], Request["Indications"], Request["Advice"], Request["Medications"], Request["Comments"], double.Parse(Request["Fees"]));
 
             TempData["Msg"] = "New Appointment Successfully created, with Appointment Id = " + appointmentId;
 
-            return RedirectToAction("Appoitments");
+            return RedirectToAction("Appointments");
         }
 
 
-        public ActionResult Appoitments()
+        public ActionResult Appointments()
         {
             if(TempData["Msg"] != null)
             {
                 ViewBag.Msg = TempData["Msg"];
             }
 
-            var lst = Appointment.GetAppointments();
+            var lst = ABCPharmacy.Models.Appointment.GetAppointments();
             return View(lst);
         }
 
         [HttpGet]
         public ActionResult EditAppointment(int id)
         {
-            Appointment appointment = Appointment.GetAppointments().Find(a => a.AppointmentId == id);
+            Appointment appointment = ABCPharmacy.Models.Appointment.GetAppointments().Find(a => a.AppointmentId == id);
 
             return View(appointment);
         }
@@ -101,7 +103,7 @@ namespace ABCPharmacy.Controllers
         [ActionName("EditAppointment")]
         public ActionResult EditAppointment_Post()
         {
-            Appointment appointment = Appointment.GetAppointments().Find(a => a.AppointmentId == int.Parse(Request["AppointmentId"]));
+            Appointment appointment = ABCPharmacy.Models.Appointment.GetAppointments().Find(a => a.AppointmentId == int.Parse(Request["AppointmentId"]));
 
             //let the doctor edit only these 4 fields...
             appointment.Indications = Request["Indications"];
@@ -110,17 +112,17 @@ namespace ABCPharmacy.Controllers
             appointment.Fees = double.Parse(Request["Fees"]);
             appointment.Medications = Request["Medications"];
 
-            Appointment.UpdateAppointment(appointment);
+            ABCPharmacy.Models.Appointment.UpdateAppointment(appointment);
 
             ViewBag.Msg = "Appointment Updated!";
 
-            return RedirectToAction("Appoitments");
+            return RedirectToAction("Appointments");
         }
 
         public ActionResult Print(int id)
         {            
 
-            var lst = Appointment.GetAppointments();
+            var lst = ABCPharmacy.Models.Appointment.GetAppointments();
             var appointment = lst.Find(a => a.AppointmentId == id);
                        
 
@@ -140,9 +142,9 @@ namespace ABCPharmacy.Controllers
         //delete patient
         public ActionResult DeleteAppointment(int id)
         {
-            Appointment.DeleteAppointment(id);
+            ABCPharmacy.Models.Appointment.DeleteAppointment(id);
 
-            return RedirectToAction("Appoitments");
+            return RedirectToAction("Appointments");
         }
     }
 }
