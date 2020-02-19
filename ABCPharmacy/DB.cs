@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ABCPharmacy
     //DAL class
     public class DB
     {
-        public static string constr = "server=SRINU;database=ABCPharmacy;trusted_connection=yes";
+        public static string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
 
         //public static void ExecuteCommand(string )
 

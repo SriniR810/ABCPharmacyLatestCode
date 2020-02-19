@@ -1,129 +1,134 @@
 ﻿@model ABCPharmacy.ViewModels.PatientDoctors
 
+@section head
+{
+    <title>Take Appointment For @Model.Patient.Firstname @Model.Patient.Surname</title>
+}
+
 <h2>Appointment</h2>
-    <form method="post">
-        <div>
-            <input type="hidden" name="PatientId" value="@Model.Patient.PatientId"/>
+<form method="post">
+    <div>
+        <input type="hidden" name="PatientId" value="@Model.Patient.PatientId" />
 
-            <h4>Patient</h4>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Patient.Firstname)
-                </dt>
+        <h4>Patient</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Patient.Firstname)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Patient.Firstname)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Patient.Firstname)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Patient.Surname)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Patient.Surname)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Patient.Surname)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Patient.Surname)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Patient.Gender)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Patient.Gender)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Patient.Gender)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Patient.Gender)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Patient.DOB)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Patient.DOB)
+            </dt>
 
-                <dd>
-                    @*@Html.DisplayFor(model => model.Patient.DOB)*@
-                    @Model.Patient.DOB.ToString("dd-MMM-yyyy")
-                </dd>
+            <dd>
+                @*@Html.DisplayFor(model => model.Patient.DOB)*@
+                @Model.Patient.DOB.ToString("dd-MMM-yyyy")
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Patient.Address)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Patient.Address)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Patient.Address)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Patient.Address)
+            </dd>
 
-                <!--  appointment...    -->
-                <dt>
-                    Doctors:
-                </dt>
+            <!--  appointment...    -->
+            <dt>
+                Doctors:
+            </dt>
 
-                <dd>
-                    @Html.DropDownList("DoctorId", new SelectList(Model.Doctors, "DoctorId", "DoctorName"))
-                </dd>
-
-
-                <dt>
-                    DOA
-                </dt>
-
-                <dd>
-                    <input name="DOA" type="date" />
-                </dd>
+            <dd>
+                @Html.DropDownList("DoctorId", new SelectList(Model.Doctors, "DoctorId", "DoctorName"))
+            </dd>
 
 
-                <dt>
-                    Symptoms
-                </dt>
+            <dt>
+                DOA
+            </dt>
 
-                <dd>
-                    <input name="Symptoms" type="text" />
-                </dd>
-
-                <dt>
-                    Fees
-                </dt>
-
-                <dd>
-                    <input name="Fees" type="text" value="10"/>
-                </dd>
+            <dd>
+                <input name="DOA" type="date" />
+            </dd>
 
 
-                <dt>
-                    Indications
-                </dt>
+            <dt>
+                Symptoms
+            </dt>
 
-                <dd>
-                    <input name="Indications" type="text" />
-                </dd>
+            <dd>
+                <input name="Symptoms" type="text" />
+            </dd>
+
+            <dt>
+                Fees
+            </dt>
+
+            <dd>
+                <input name="Fees" type="text" value="10" />
+            </dd>
 
 
-                <dt>
-                    Advice
-                </dt>
+            <dt>
+                Indications
+            </dt>
 
-                <dd>
-                    <input name="Advice" type="text" />
-                </dd>
+            <dd>
+                <input name="Indications" type="text" />
+            </dd>
 
-                <dt>
-                    Medications
-                </dt>
 
-                <dd>
-                    <input name="Medications" type="text" />
-                </dd>
+            <dt>
+                Advice
+            </dt>
 
-                <dt>
-                    Comments
-                </dt>
+            <dd>
+                <input name="Advice" type="text" />
+            </dd>
 
-                <dd>
-                    <input name="Comments" type="text" />
-                </dd>
+            <dt>
+                Medications
+            </dt>
 
-            </dl>
-        </div>
+            <dd>
+                <input name="Medications" type="text" />
+            </dd>
 
-        <input type="submit" value="Create Appointment"/>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Patient.PatientId }) 
-            @Html.ActionLink("Back to List", "Index")
-        </p>
-    </form>
+            <dt>
+                Comments
+            </dt>
+
+            <dd>
+                <input name="Comments" type="text" />
+            </dd>
+
+        </dl>
+    </div>
+
+    <input type="submit" value="Create Appointment" />
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Patient.PatientId })
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</form>
